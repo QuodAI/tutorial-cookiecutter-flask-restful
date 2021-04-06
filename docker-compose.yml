@@ -1,0 +1,17 @@
+# WARNING: this file is not suitable for production, please use with caution
+version: '3'
+
+services:
+  web:
+    image: tutorial-cookiecutter-restful
+    build: .
+    command: flask run -h 0.0.0.0
+    env_file:
+      - ./.flaskenv
+    environment:
+      - DATABASE_URI=sqlite:////db/tutorial-cookiecutter-restful.db
+    volumes:
+      - ./tutorial-cookiecutter-restful:/code/tutorial-cookiecutter-restful
+      - ./db/:/db/
+    ports:
+      - "5000:5000"
